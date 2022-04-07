@@ -29,44 +29,53 @@ class PageSuivanteState extends State<PageSuivante> {
                 ],
               ),
             ),
-          )
+          ),
+          /*FloatingActionButton(
+            onPressed: () {},
+            backgroundColor: Colors.indigo,
+            child: const Icon(Icons.search),
+          )*/
         ],
       )),
       bottomNavigationBar: Container(
-          height: 100,
+          height: 135,
           padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(40)),
             child: BottomNavigationBar(
-                backgroundColor: Colors.indigo,
-                items: [
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.car_rental,
-                        size: 50,
-                        color: Colors.indigoAccent,
-                      ),
-                      label: ''),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.home,
-                        size: 50,
-                        color: Colors.indigoAccent,
-                      ),
-                      label: ''),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.search,
-                        size: 50,
-                        color: Colors.indigoAccent,
-                      ),
-                      label: '')
-                ],
-                onTap: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                }),
+              backgroundColor: Colors.indigo,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.car_rental,
+                      size: 50,
+                      color: Color.fromARGB(179, 211, 204, 204),
+                    ),
+                    label: '',
+                    backgroundColor: Colors.blue),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                    size: 50,
+                    color: Color.fromARGB(179, 211, 204, 204),
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.person,
+                      size: 50,
+                      color: Color.fromARGB(179, 211, 204, 204),
+                    ),
+                    label: '')
+              ],
+              onTap: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              elevation: 5,
+            ),
           )),
     );
   }
