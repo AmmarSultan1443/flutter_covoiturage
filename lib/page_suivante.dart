@@ -16,7 +16,21 @@ class PageSuivanteState extends State<PageSuivante> {
       ),
       body: SingleChildScrollView(
           child: Row(
-        children: [],
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: Container(
+              height: 110,
+              width: 390,
+              color: Colors.grey,
+              child: Row(
+                children: [
+                  Text("YOOOO"),
+                ],
+              ),
+            ),
+          )
+        ],
       )),
       bottomNavigationBar: Container(
           height: 100,
