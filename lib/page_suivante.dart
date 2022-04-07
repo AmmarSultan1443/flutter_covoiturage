@@ -11,7 +11,7 @@ class PageSuivanteState extends State<PageSuivante> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Bienvenue, Yamin'),
+        title: new Text('Wassup, Yamin'),
       ),
       body: SingleChildScrollView(
           child: Row(
