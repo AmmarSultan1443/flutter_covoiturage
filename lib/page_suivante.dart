@@ -7,18 +7,53 @@ class PageSuivante extends StatefulWidget {
 }
 
 class PageSuivanteState extends State<PageSuivante> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Wassup, Yamin'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Wassup, Yamin'),
       ),
       body: SingleChildScrollView(
           child: Row(
-        children: [
-          /*BottomNavigationBar(currentIndex: ,items: items, onTap: ,)*/
-        ],
+        children: [],
       )),
+      bottomNavigationBar: Container(
+          height: 100,
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+            child: BottomNavigationBar(
+                backgroundColor: Colors.indigo,
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.car_rental,
+                        size: 50,
+                        color: Colors.indigoAccent,
+                      ),
+                      label: ''),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.home,
+                        size: 50,
+                        color: Colors.indigoAccent,
+                      ),
+                      label: ''),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.search,
+                        size: 50,
+                        color: Colors.indigoAccent,
+                      ),
+                      label: '')
+                ],
+                onTap: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                }),
+          )),
     );
   }
 }
