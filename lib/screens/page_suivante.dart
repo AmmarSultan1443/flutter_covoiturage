@@ -36,6 +36,7 @@ class PageSuivanteState extends State<PageSuivante> {
               future: BddController().getData(),
               builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
                 if (!snapshot.hasData) {
+                  print(snapshot);
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +45,7 @@ class PageSuivanteState extends State<PageSuivante> {
                     ),
                   );
                 }
-                if (snapshot.data!.length == 0) {
+                if (snapshot.data == 0) {
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -11,7 +11,7 @@ class BddController {
         db: ConstantBDD.db));
 
     var resultat = await conn.query('select * from profil order by asc');
-
+    print(resultat);
     return resultat.toList();
   }
 }
