@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:covoiturage_vavite/page_suivante.dart';
+import 'package:covoiturage_vavite/screens/page_suivante.dart';
 
 class ProfilePage extends StatefulWidget {
   @override

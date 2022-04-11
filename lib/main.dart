@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:covoiturage_vavite/profile_page.dart';
+import 'package:covoiturage_vavite/screens/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
