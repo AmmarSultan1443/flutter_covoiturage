@@ -1,3 +1,4 @@
+import 'package:covoiturage_vavite/connexion.dart';
 import 'package:flutter/material.dart';
 import 'package:covoiturage_vavite/screens/profile_page.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: ProfilePage(),
+      home: Connexion(),
     );
   }
 }
