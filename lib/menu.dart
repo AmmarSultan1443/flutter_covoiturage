@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covoiturage_vavite/ajouter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,6 +18,22 @@ class MenuState extends State<Menu> {
     }
   }
 
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      print(index);
+      if (index == 1) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Ajout()));
+      } else if (index == 2) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Menu()));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +50,27 @@ class MenuState extends State<Menu> {
           ),
         ],
       ),*/
+      appBar: AppBar(
+        title: Text('Wassup, Yamin'),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Accueil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.car_rental),
+            label: 'Ajouter',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+        ],
+        currentIndex: _selectedIndex, //New
+        onTap: _onItemTapped, //New
+      ),
       body: FutureBuilder(
         future: getTransport(),
         builder: (context, snapshot) {

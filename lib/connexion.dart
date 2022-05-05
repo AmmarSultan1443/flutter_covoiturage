@@ -14,11 +14,15 @@ class Connexion extends StatefulWidget {
 class ConnexionState extends State<Connexion> {
   late TextEditingController clogin;
   late TextEditingController cmdp;
+  //late TextEditingController cPrenom;
 
   Future login() async {
     var url = Uri.parse("http://localhost:8888/bdvavite/login.php");
-    var response =
-        await http.post(url, body: {"login": clogin.text, "mdp": cmdp.text});
+    var response = await http.post(url, body: {
+      "login": clogin.text,
+      "mdp": cmdp.text,
+      //"prenUser": cPrenom.text
+    });
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
@@ -29,13 +33,14 @@ class ConnexionState extends State<Connexion> {
             position: FlutterToastr.bottom);
       } else {
         print('okkkk');
+
         FlutterToastr.show("Accès autorisé", context,
             duration: FlutterToastr.lengthShort,
             position: FlutterToastr.bottom);
-        Navigator.push(context,
-            new MaterialPageRoute(builder: (BuildContext context) {
-          return new Menu();
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Menu()),
+        );
         //Navigator.pushReplacementNamed(context, '/secondePage');
       }
     } else {
