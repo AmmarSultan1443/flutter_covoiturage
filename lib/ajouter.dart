@@ -109,63 +109,70 @@ class AjoutState extends State<Ajout> {
                 left: 20.0, bottom: 20.0, right: 20.0, top: 20.0),
             children: <Widget>[
               //buildDatePicker(),
-              TextField(
-                controller: dateController,
-                keyboardType: TextInputType.datetime,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 20.0),
-                    labelText: 'Date',
-                    prefixIcon: Icon(Icons.calendar_today),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide:
-                            BorderSide(color: Colors.blueAccent, width: 2.0)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(
-                            color: Colors.indigoAccent, width: 2.0))),
+              Card(
+                child: TextField(
+                  controller: dateController,
+                  keyboardType: TextInputType.datetime,
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(bottom: 20.0),
+                      labelText: 'Date',
+                      prefixIcon: Icon(Icons.calendar_today),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderSide:
+                              BorderSide(color: Colors.blueAccent, width: 2.0)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderSide: BorderSide(
+                              color: Colors.indigoAccent, width: 2.0))),
+                ),
               ),
-              TextFormField(
-                controller: heureController,
-                keyboardType: TextInputType.datetime,
-                decoration: InputDecoration(
-                    labelText: 'Heure',
-                    prefixIcon: Icon(Icons.watch),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide:
-                            BorderSide(color: Colors.blueAccent, width: 2.0)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(
-                            color: Colors.indigoAccent, width: 2.0))),
+              Card(
+                child: TextFormField(
+                  controller: heureController,
+                  keyboardType: TextInputType.datetime,
+                  decoration: InputDecoration(
+                      labelText: 'Heure',
+                      prefixIcon: Icon(Icons.watch),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderSide:
+                              BorderSide(color: Colors.blueAccent, width: 2.0)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderSide: BorderSide(
+                              color: Colors.indigoAccent, width: 2.0))),
+                ),
               ),
-              DropdownButtonFormField(
-                decoration: InputDecoration(
-                    labelText: 'Type d\'offre',
-                    prefixIcon: Icon(Icons.car_rental),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide:
-                            BorderSide(color: Colors.blueAccent, width: 2.0)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide(
-                            color: Colors.indigoAccent, width: 2.0))),
-                items: const [
-                  DropdownMenuItem(
-                    child: Text('Arrivée'),
-                    value: "Arrivée",
-                  ),
-                  DropdownMenuItem(child: Text('Départ'), value: "Départ")
-                ],
-                value: _dropdownValue,
-                onChanged: dropDownCallBack,
-                iconSize: 42.0,
-                //borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                iconEnabledColor: Colors.indigo,
-                isExpanded: true,
+              Card(
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                      labelText: 'Type d\'offre',
+                      prefixIcon: Icon(Icons.car_rental),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          borderSide:
+                              BorderSide(color: Colors.blueAccent, width: 2.0)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          borderSide: BorderSide(
+                              color: Colors.indigoAccent, width: 2.0))),
+                  items: const [
+                    DropdownMenuItem(
+                      child: Text('Arrivée'),
+                      value: "Arrivée",
+                    ),
+                    DropdownMenuItem(child: Text('Départ'), value: "Départ")
+                  ],
+                  value: _dropdownValue,
+                  onChanged: dropDownCallBack,
+                  iconSize: 42.0,
+                  //borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  iconEnabledColor: Colors.indigo,
+                  isExpanded: true,
+                ),
               ),
+
               /*TextFormField(
                 decoration: InputDecoration(
                     labelText: 'Type d\'offre',
@@ -184,7 +191,8 @@ class AjoutState extends State<Ajout> {
                   ajout();
                 },
                 child: Text("Ajouter"),
-              )
+              ),
+              Image.asset('images/ajout2.png'),
             ],
           )),
         ));
