@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:covoiturage_vavite/menu.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_toastr/flutter_toastr.dart';
 
 class Ajout extends StatefulWidget {
   AjoutState createState() => AjoutState();
@@ -10,11 +13,38 @@ class Ajout extends StatefulWidget {
 class AjoutState extends State<Ajout> {
   int _selectedIndex = 0;
   String _dropdownValue = 'Arrivée';
+
   DateTime date = DateTime.now();
 
   TextEditingController dateController = TextEditingController();
   TextEditingController heureController = TextEditingController();
   TextEditingController offreController = TextEditingController();
+
+  Future ajout() async {
+    var url = Uri.parse("http://localhost:8888/bdvavite/ajout.php");
+    var response = await http.post(url, body: {
+      "date": dateController.text,
+      "heure": heureController.text,
+      "typeOffre": _dropdownValue,
+      //"prenUser": cPrenom.text
+    });
+
+    if (response.statusCode == 200) {
+      print('yooo on est dans le if');
+
+      FlutterToastr.show("Donnée ajoutée", context,
+          duration: FlutterToastr.lengthShort, position: FlutterToastr.bottom);
+      print('la donnée est ajoutée');
+      Navigator.push(
+        context,
+        PageTransition(type: PageTransitionType.fade, child: Menu()),
+      );
+      //Navigator.pushReplacementNamed(context, '/secondePage');
+    } else {
+      print('Erreur!!!');
+      print(response.statusCode.toString());
+    }
+  }
 
   void dropDownCallBack(String? selectedValue) {
     if (selectedValue is String) {
@@ -150,7 +180,9 @@ class AjoutState extends State<Ajout> {
                             color: Colors.indigoAccent, width: 2.0))),
               ),*/
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ajout();
+                },
                 child: Text("Ajouter"),
               )
             ],
