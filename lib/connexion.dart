@@ -16,6 +16,7 @@ class ConnexionState extends State<Connexion> {
   late TextEditingController cmdp;
   //late TextEditingController cPrenom;
 
+  //Fonction de connexion à la page de login en php
   Future login() async {
     var url = Uri.parse("http://localhost:8888/bdvavite/login.php");
     var response = await http.post(url, body: {
@@ -70,22 +71,21 @@ class ConnexionState extends State<Connexion> {
         title: const Text('CoVoiturage'),
       ),
       body: Column(mainAxisSize: MainAxisSize.max, children: [
+        // Affichage de l'image
         Image.asset('images/covoiturage.jpg'),
         Card(
+          // Champ d'insertion du nom d'utilisateur
           child: TextField(
             controller: clogin,
             decoration: const InputDecoration(
                 hintText: "Entrez votre login",
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.indigo),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25.0),
-                        topRight: Radius.circular(25.0),
-                        bottomLeft: Radius.circular(25.0),
-                        bottomRight: Radius.circular(25.0)))),
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)))),
           ),
         ),
         Card(
+          // Champ d'insertion du mot de passe
           child: TextField(
             controller: cmdp,
             obscureText: true,
@@ -93,11 +93,7 @@ class ConnexionState extends State<Connexion> {
                 hintText: "Entrez votre mot de passe",
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.indigo),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25.0),
-                        topRight: Radius.circular(25.0),
-                        bottomLeft: Radius.circular(25.0),
-                        bottomRight: Radius.circular(25.0)))),
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)))),
           ),
         ),
         Row(

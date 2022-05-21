@@ -90,8 +90,27 @@ class MenuState extends State<Menu> {
               ? ListView.builder(itemBuilder: (context, index) {
                   var data = (snapshot.data);
                   List? liste = snapshot.data as List?;
-                  return ListTile(
-                    title: Text(liste![index]['date']),
+                  return ListBody(
+                    children: [
+                      Padding(padding: EdgeInsets.all(10.0)),
+                      Title(
+                          color: Colors.black,
+                          child: Text(
+                            liste![index]['date'],
+                            style: TextStyle(fontSize: 20),
+                          )),
+                      //Text(liste![index]['date']),
+                      Text(
+                        liste![index]['heure'],
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        liste![index]['typeOffre'],
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Divider(),
+                    ],
                   );
                 })
               : Center(
