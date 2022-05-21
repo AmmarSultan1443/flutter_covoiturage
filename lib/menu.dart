@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:covoiturage_vavite/ajouter.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:http/http.dart' as http;
 
 class Menu extends StatefulWidget {
@@ -26,10 +27,20 @@ class MenuState extends State<Menu> {
       print(index);
       if (index == 1) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Ajout()));
+          context,
+          PageTransition(
+              type: PageTransitionType.fade,
+              child:
+                  Ajout()), /*MaterialPageRoute(builder: (context) => Ajout())*/
+        );
       } else if (index == 2) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Menu()));
+          context,
+          PageTransition(
+              type: PageTransitionType.fade,
+              child:
+                  Menu()), /*MaterialPageRoute(builder: (context) => Menu())*/
+        );
       }
     });
   }
