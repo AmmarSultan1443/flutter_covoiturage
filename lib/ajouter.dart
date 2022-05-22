@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covoiturage_vavite/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -7,6 +8,11 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_toastr/flutter_toastr.dart';
 
 class Ajout extends StatefulWidget {
+  final String username;
+  final String password;
+
+  Ajout({required this.username, required this.password});
+  @override
   AjoutState createState() => AjoutState();
 }
 
@@ -26,6 +32,7 @@ class AjoutState extends State<Ajout> {
       "date": dateController.text,
       "heure": heureController.text,
       "typeOffre": _dropdownValue,
+      "mail": widget.username,
       //"prenUser": cPrenom.text
     });
 
@@ -37,7 +44,12 @@ class AjoutState extends State<Ajout> {
       print('la donnée est ajoutée');
       Navigator.push(
         context,
-        PageTransition(type: PageTransitionType.fade, child: Menu()),
+        PageTransition(
+            type: PageTransitionType.fade,
+            child: Menu(
+              username: widget.username,
+              password: widget.password,
+            )),
       );
       //Navigator.pushReplacementNamed(context, '/secondePage');
     } else {
@@ -57,22 +69,27 @@ class AjoutState extends State<Ajout> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      print(widget.username);
       print(index);
       if (index == 0) {
         Navigator.push(
           context,
           PageTransition(
               type: PageTransitionType.fade,
-              child:
-                  Menu()), /*MaterialPageRoute(builder: (context) => Menu())*/
+              child: Menu(
+                username: widget.username,
+                password: widget.password,
+              )), /*MaterialPageRoute(builder: (context) => Menu())*/
         );
       } else if (index == 2) {
         Navigator.push(
           context,
           PageTransition(
               type: PageTransitionType.fade,
-              child:
-                  Menu()), /*MaterialPageRoute(builder: (context) => Menu())*/
+              child: ProfilePage(
+                username: widget.username,
+                password: widget.password,
+              )), /*MaterialPageRoute(builder: (context) => Menu())*/
         );
       }
     });

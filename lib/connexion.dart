@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'package:covoiturage_vavite/createAccount.dart';
 import 'package:flutter/material.dart';
 import 'package:covoiturage_vavite/menu.dart';
 import 'package:covoiturage_vavite/screens/page_suivante.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_toastr/flutter_toastr.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Connexion extends StatefulWidget {
   @override
@@ -14,6 +16,7 @@ class Connexion extends StatefulWidget {
 class ConnexionState extends State<Connexion> {
   late TextEditingController clogin;
   late TextEditingController cmdp;
+  String? username = '';
   //late TextEditingController cPrenom;
 
   //Fonction de connexion à la page de login en php
@@ -40,7 +43,11 @@ class ConnexionState extends State<Connexion> {
             position: FlutterToastr.bottom);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Menu()),
+          MaterialPageRoute(
+              builder: (context) => Menu(
+                    username: clogin.text,
+                    password: cmdp.text,
+                  )),
         );
         //Navigator.pushReplacementNamed(context, '/secondePage');
       }
@@ -112,6 +119,16 @@ class ConnexionState extends State<Connexion> {
                 login();
               },
             ))
+          ],
+        ),
+        ButtonBar(
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CreateAccount()));
+                },
+                child: Text('Créer un compte ?'))
           ],
         )
       ]),

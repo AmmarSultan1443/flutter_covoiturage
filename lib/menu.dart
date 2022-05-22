@@ -1,10 +1,18 @@
 import 'dart:convert';
 import 'package:covoiturage_vavite/ajouter.dart';
+import 'package:covoiturage_vavite/ride.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:covoiturage_vavite/profilePage.dart';
 import 'package:http/http.dart' as http;
 
 class Menu extends StatefulWidget {
+  final String username;
+  final String password;
+
+  Menu({required this.username, required this.password});
+
+  @override
   MenuState createState() => MenuState();
 }
 
@@ -30,16 +38,20 @@ class MenuState extends State<Menu> {
           context,
           PageTransition(
               type: PageTransitionType.fade,
-              child:
-                  Ajout()), /*MaterialPageRoute(builder: (context) => Ajout())*/
+              child: Ajout(
+                username: widget.username,
+                password: widget.password,
+              )), /*MaterialPageRoute(builder: (context) => Ajout())*/
         );
       } else if (index == 2) {
         Navigator.push(
           context,
           PageTransition(
               type: PageTransitionType.fade,
-              child:
-                  Menu()), /*MaterialPageRoute(builder: (context) => Menu())*/
+              child: ProfilePage(
+                username: widget.username,
+                password: widget.password,
+              )), /*MaterialPageRoute(builder: (context) => Menu())*/
         );
       }
     });
@@ -62,7 +74,7 @@ class MenuState extends State<Menu> {
         ],
       ),*/
       appBar: AppBar(
-        title: Text('Wassup, Yamin'),
+        title: Text('Wassup, ' + widget.username),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -91,26 +103,28 @@ class MenuState extends State<Menu> {
                   var data = (snapshot.data);
                   List? liste = snapshot.data as List?;
                   return Card(
-                    child: ListBody(
-                      children: [
-                        Padding(padding: EdgeInsets.all(10.0)),
-                        Title(
-                            color: Colors.black,
-                            child: Text(
-                              liste![index]['date'],
-                              style: TextStyle(fontSize: 20),
-                            )),
-                        //Text(liste![index]['date']),
-                        Text(
-                          liste![index]['heure'],
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          liste![index]['typeOffre'],
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text(liste![index]['date'],
+                          style: TextStyle(fontSize: 20)),
+                      subtitle: Text(
+                        liste![index]['heure'] +
+                            '\n' +
+                            liste![index]['typeOffre'],
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      isThreeLine: true,
+                      onTap: () => Navigator.push(
+                          context,
+                          PageTransition(
+                              child: Ride(
+                                  date: liste![index]['date'],
+                                  heure: liste![index]['heure'],
+                                  typeOffre: liste![index]['typeOffre'],
+                                  username: widget.username,
+                                  password: widget.password,
+                                  rider: liste![index]['idUser']),
+                              type: PageTransitionType.bottomToTop)),
                     ),
                   );
                 })
