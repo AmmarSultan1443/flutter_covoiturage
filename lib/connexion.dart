@@ -121,7 +121,7 @@ class ConnexionState extends State<Connexion> {
             ))
           ],
         ),
-        ButtonBar(
+        /* ButtonBar(
           children: [
             ElevatedButton(
                 onPressed: () {
@@ -130,7 +130,7 @@ class ConnexionState extends State<Connexion> {
                 },
                 child: Text('Créer un compte ?'))
           ],
-        )
+        )*/
       ]),
     );
   }
